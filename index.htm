@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="a follower">
+  <meta name="keywords" content="SeanIsTethered,SINAC,OverWriteMeow,fridakitten,cr4zyengineer,fridadev,Nyxia,mach_port_t,kern_return_t,SparkleChan,Old_Row7366,nyxiandev,ext4fs,nyxengineer,cr4zydev,SparkleChanJB,Lindsey,loverflows,Catelyn,mimalloc,lindseyoverflows,jailbreakmerebooted,sparklingchan,integerkitten">
+  <title>Another doc on Sean</title>
+</head>
+<body>
+
+<p>Let's try to proof that <a href="https://discordapp.com/users/1368702342706237541">@Catelyn</a> and <a href="https://discordapp.com/users/1334517373381902369">@Nyxia</a> are the same person.</p>
+
+<p>First download <a href="https://github.com/emexlab/emexDE/releases/tag/0.10.2">this emexDE release</a> uploaded by <a href="https://github.com/mimalloc">mimalloc</a>, extract and search a string inside <code>CoreCompiler</code>.</p>
+<pre>
+#!/usr/bin/env bash
+
+curl -LO 'https://github.com/emexlab/emexDE/releases/download/0.10.2/emexDE.ipa' # replaced silently: https://discord.com/channels/@me/1369024868980490414/1505956258581319831
+sha256sum ./emexDE.ipa # expected: 79ffafc14bb69cbbdbb61abeaa49e645645b9977fd7603bd8951f569728425e6
+unzip -jn ./emexDE.ipa 'Payload/emexDE.app/Frameworks/CoreCompiler.framework/CoreCompiler' -d emexDE
+strings ./emexDE/CoreCompiler | grep 'frida'
+</pre>
+<p>The output</p>
+<pre>
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/Analysis/ConstructionContext.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/Type.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/RecursiveASTVisitor.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/Expr.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/AttrVisitor.inc
+/Users/<b>frida</b>/Documents/GitHub/Nyxian/LLVM-On-iOS/swift/lib/Demangling/Demangler.cpp
+</pre>
+
+<p>Now do the same with <a href="https://github.com/emexlab/emexDE/releases/tag/0.10.1">the latest release of Nyxian</a> uploaded by <a href="https://github.com/mach-port-t">mach-port-t</a>.</p>
+<pre>
+#!/usr/bin/env bash
+
+curl -L 'https://github.com/emexlab/emexDE/releases/download/0.10.1/Nyxian.ipa' -o 'nyxianBySean.ipa'
+sha256sum ./nyxianBySean.ipa # expected: 9cb33f9d838cea450070d0f01bc38d5a1cb193396492b1889b8c128f77c53c50
+unzip -jn ./nyxianBySean.ipa 'Payload/Nyxian.app/Frameworks/CoreCompiler.framework/CoreCompiler' -d nyxianBySean
+strings ./nyxianBySean/CoreCompiler | grep 'frida'
+</pre>
+<p>The output</p>
+<pre>
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/Analysis/ConstructionContext.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/Type.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/RecursiveASTVisitor.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/Expr.h
+/Users/<b>frida</b>/Library/Developer/Xcode/DerivedData/Nyxian-dukmofqweprjkfabsuhtoqwuesfa/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/AttrVisitor.inc
+/Users/<b>frida</b>/Documents/GitHub/Nyxian/LLVM-On-iOS/swift/lib/Demangling/Demangler.cpp
+</pre>
+
+<img src="there-are-no-accidents.gif" alt="There are no accidents">
+
+<p>Anyway, try again with a Nyxian artifact built and uploaded by GitHub Actions: <a href="https://github.com/emexlab/emexDE/actions/runs/25905660664#artifacts">this one</a>.</p>
+<pre>
+#!/usr/bin/env bash
+
+curl -L 'https://nightly.link/emexlab/emexDE/actions/runs/25905660664/nyxian.ipa.zip' -o 'nyxianByGitHub.ipa.zip'
+unzip ./nyxianByGitHub.ipa.zip
+sha256sum ./nyxian.ipa # expected: c8859a1b6eaa05e4902c8af1ea2d26e208392eaa1108c11f068082e95f7ae854
+unzip -jn ./nyxian.ipa 'Payload/Nyxian.app/Frameworks/CoreCompiler.framework/CoreCompiler' -d nyxianByGitHub
+strings ./nyxianByGitHub/CoreCompiler | grep 'frida'
+</pre>
+<p>The output</p>
+<pre>
+</pre>
+Empty output! Check the source code of this page to confirm it.
+<p>Try again with another word</p>
+<pre>
+#!/usr/bin/env bash
+
+strings ./nyxianByGitHub/CoreCompiler | grep '/runner/'
+</pre>
+<p>The output</p>
+<pre>
+/Users/<b>runner</b>//Library/Developer/Xcode/DerivedData/Nyxian-fyzumuoxmssfvfeufebdckbamany/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/Analysis/ConstructionContext.h
+/Users/<b>runner</b>/Library/Developer/Xcode/DerivedData/Nyxian-fyzumuoxmssfvfeufebdckbamany/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/Type.h
+/Users/<b>runner</b>/Library/Developer/Xcode/DerivedData/Nyxian-fyzumuoxmssfvfeufebdckbamany/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/RecursiveASTVisitor.h
+/Users/<b>runner</b>/Library/Developer/Xcode/DerivedData/Nyxian-fyzumuoxmssfvfeufebdckbamany/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/Expr.h
+/Users/<b>runner</b>/Library/Developer/Xcode/DerivedData/Nyxian-fyzumuoxmssfvfeufebdckbamany/Build/Intermediates.noindex/ArchiveIntermediates/Nyxian/BuildProductsPath/Release-iphoneos/include/clang/AST/AttrVisitor.inc
+/Users/<b>runner</b>/work/Nyxian/Nyxian/LLVM-On-iOS/swift/lib/Demangling/Demangler.cpp
+</pre>
+
+<p>
+Now look carefully <a href="https://discord.com/channels/1362932870200561916/1362932870988959929/1499369215101239346">this image</a> (login required) by Nyxia on Nyxian Discord Server. 
+In particular look terminal tabs title. <b>Are they familiar to you?</b>
+</p>
+<img src="Screenshot_2026-04-30_at_13.17.44.png" style="display: block;width: 100%;height: 100%;object-fit: cover;">
+<p>Oh, this is the message on Discord server. Check time and date to confirm it!</p>
+<img src="message.png">
+
+</body>
+</html>
+
